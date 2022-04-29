@@ -46,8 +46,8 @@ const printGame = (game: Game) => {
 
     // print players
     for (const player of game.players) {
-        const emptyLine = `|${".".repeat(mapSize)}|   ${player.name}`;
-        const playerLine = replaceAt(emptyLine, player.position, player.isAlive ? player.emoji: "🪦");
+        const emptyLine = `|${".".repeat(mapSize)}.|  ${player.name}`;
+        const playerLine = replaceAt(emptyLine, player.position, player.isAlive ? player.emoji: "💀");
         console.log(playerLine)
     }
 }
@@ -67,7 +67,7 @@ const gameLoop = (game: Game) => {
             process.exit(0);
         }*/
 
-        const playerFinish = game.players.filter(player => player.position === mapSize);
+        const playerFinish = game.players.filter(player => player.position >= mapSize);
         if (playerFinish.length >= 1) {
             clearInterval(godIntervalId);
             const playersNames = playerFinish.map(player => player.name).join(", ");
